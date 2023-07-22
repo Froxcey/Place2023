@@ -1,8 +1,9 @@
 // ==UserScript==
 // @name         Place Azzy
-// @namespace    http://tampermonkey.net/
-// @version      0.1
-// @description  Azzy takes over the world
+// @homepage     https://discord.gg/AmUVTBST
+// @updateURL    https://github.com/Froxcey/Place2023/raw/master/placeAzzy.user.js
+// @version      Alpha-v1
+// @description  try to take over the world!
 // @author       Frox
 // @match	     https://garlic-bread.reddit.com/embed*
 // @connect      reddit.com
