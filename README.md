@@ -16,6 +16,8 @@ Independently developed 2023 r/place bot by Froxcey for the [Asriel place Discor
 
 Make sure your place button has black text. If your button also says `Azzy Bot!` or have the stripe background, then that's also a good sign.
 
+<img width="168" src="https://github.com/Froxcey/Place2023/assets/51555391/445809f5-4946-4854-90c0-f27b91c89be3">
+
 ## Update
 
 When updates are available, a popup will appear:
