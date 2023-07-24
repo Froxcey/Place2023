@@ -8,13 +8,13 @@ Independently developed 2023 r/place bot by Froxcey for the [Asriel place Discor
 2. Install [this](https://github.com/Froxcey/Place2023/raw/master/placeAzzy.user.js)
 3. Go [here](https://reddit.com/r/place)
 
-> ❗ Important: Don't leave the tab in background, leave it in a dedicated window (the window can be in background). Reddit unloads the website to save resources when the tab is in background, and it can interrupt the bot.
+> ❗ Important: You need to keep the area that you want to place loaded by keeping them visible in the game window.
 
-## Projects
+## Addons
 
-**Asriel Place**: This bot works for this project by default, no need to change anything.
+**Asriel BG** (1.6.1+): Click [me](https://github.com/Froxcey/Place2023/raw/master/placeAzzy_azzy-bg.user.js) to enable the Asriel BG project.
 
-**Asriel BG**: Click [me](https://github.com/Froxcey/Place2023/raw/master/placeAzzy_azzy-bg.user.js) to enable the Asriel BG project.
+**Single mode** (1.6.5+): Click [me](https://github.com/Froxcey/Place2023/raw/master/placeAzzy_single-mode.user.js) to enable single mode (alway build top to down and left to right).
 
 **Other projects**: Please join our [Discord server](https://discord.gg/AmUVTBST) if you'd like to add your project to our bot.
 
