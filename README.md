@@ -10,7 +10,12 @@ Independently developed 2023 r/place bot by Froxcey for the [Asriel place Discor
 
 **Asriel Place**: This bot works for this project by default, no need to change anything.
 
+**Asriel BG**: Click [me](https://github.com/Froxcey/Place2023/raw/master/placeAzzy_azzy-bg.user.js) to enable the Asriel BG project.
+
 **Other projects**: Please join our [Discord server](https://discord.gg/AmUVTBST) if you'd like to add your project to our bot.
+
+> ❗ Important
+> Don't leave the tab in background, leave it in a dedicated window (the window can be in background). Reddit unloads the website to save resources when the tab is in background, and it can interrupt the bot.
 
 ## Check installation
 
