@@ -8,8 +8,7 @@ Independently developed 2023 r/place bot by Froxcey for the [Asriel place Discor
 2. Install [this](https://github.com/Froxcey/Place2023/raw/master/placeAzzy.user.js)
 3. Go [here](https://reddit.com/r/place)
 
-> ❗ Important
-> Don't leave the tab in background, leave it in a dedicated window (the window can be in background). Reddit unloads the website to save resources when the tab is in background, and it can interrupt the bot.
+> ❗ Important: Don't leave the tab in background, leave it in a dedicated window (the window can be in background). Reddit unloads the website to save resources when the tab is in background, and it can interrupt the bot.
 
 ## Projects
 
