@@ -10,6 +10,6 @@
 // @connect      githubusercontent.com
 // ==/UserScript==
 
-window.botTasks = {
-  azzyBg: true,
-};
+setTimeout(() => {
+  window.postMessage({ type: "addTask", name: "azzyBg" });
+}, 100);
