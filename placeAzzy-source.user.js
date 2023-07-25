@@ -3,7 +3,7 @@
 // @homepage     https://discord.gg/AmUVTBST
 // @updateURL    https://github.com/Froxcey/Place2023/raw/master/placeAzzy-source.user.js
 // @downloadURL  https://github.com/Froxcey/Place2023/raw/master/placeAzzy-source.user.js
-// @version      1.7.10
+// @version      1.7.11
 // @description  try to take over the world!
 // @author       Froxcey
 // @match        https://garlic-bread.reddit.com/embed*
