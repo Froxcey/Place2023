@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         Azzy Bot - Flowey on Azzy
 // @homepage     https://discord.gg/AmUVTBST
-// @updateURL    https://github.com/Froxcey/Place2023/raw/master/placeAzzy_azzy-bg.user.js
-// @downloadURL  https://github.com/Froxcey/Place2023/raw/master/placeAzzy_azzy-bg.user.js
+// @updateURL    https://github.com/Froxcey/Place2023/raw/master/placeAzzy_flowey-on-azzy.user.js
+// @downloadURL  https://github.com/Froxcey/Place2023/raw/master/placeAzzy_flowey-on-azzy.user.js
 // @version      1.0
 // @description  try to take over the world!
 // @author       Froxcey
