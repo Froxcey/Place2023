@@ -28,7 +28,7 @@
       },
       {
         name: "floweyOnAzzy",
-        templateURL: "https://i.imgur.com/7h8YPZK.png",
+        templateURL: "https://i.imgur.com/4DzeLZS.png",
         offsetX: 376,
         offsetY: 193,
       },
@@ -60,19 +60,20 @@
       let template = config.tasks.filter((val) => {
         return val.name == event.data.name;
       });
-      if (template.length == 0) return console.log("Unknown task:", event.data.name);
-      console.log("Adding task: ", template[0].name);
+      if (template.length == 0) return console.warn("[Azzy Bot]: Unknown task", event.data.name);
+      console.log("[Azzy Bot]: Adding task ", template[0].name);
       fetchImage(template[0].templateURL)
         .then((img) => {
           templates.push({
             img,
             offsetX: template[0].offsetX,
             offsetY: template[0].offsetY,
+            name: template[0].name,
           });
           tasks[event.data.name] = true;
         })
         .catch((err) => {
-          console.log("ERROR: template failed to load", err);
+          console.error("[Azzy Bot]\nERROR: template failed to load", err);
         });
     }
     if (event.data.type == "singleMode") {
@@ -106,6 +107,7 @@
     let img = await fetchImage(template.templateURL);
     templates.push({
       img,
+      name: template.name,
       offsetX: template.offsetX,
       offsetY: template.offsetY,
     });
@@ -118,10 +120,11 @@
         .shadowRoot.querySelector("div > garlic-bread-share-container > garlic-bread-camera > garlic-bread-canvas")
         .shadowRoot.querySelector("div > canvas");
       setButtonStyle();
-
       function tilCanvasLoaded() {
-        if (isCanvasAllBlack()) {
-          console.log("Waiting for canva to load...");
+        if (
+          isCanvasAll(placeCanvas.getContext("2d").getImageData(0, 0, placeCanvas.width, placeCanvas.height), 0, 0, 0)
+        ) {
+          console.log("[Azzy Bot]: Waiting for canva to load...");
           setTimeout(() => {
             tilCanvasLoaded();
           }, 2000);
@@ -137,7 +140,9 @@
       }
       tilCanvasLoaded();
     } catch (error) {
-      console.log("Load attempt failed:", error);
+      console.groupCollapsed("[Azzy Bot]: Load attempt failed");
+      console.error(error);
+      console.groupEnd();
       setTimeout(() => {
         getCanvas();
       }, 2000);
@@ -145,15 +150,10 @@
   }
   getCanvas();
 
-  function isCanvasAllBlack() {
-    const ctx = placeCanvas.getContext("2d");
-    const imageData = ctx.getImageData(0, 0, placeCanvas.width, placeCanvas.height);
+  function isCanvasAll(imageData, r, g, b) {
     const data = imageData.data;
-    for (let i = 0; i < data.length; i += 4) {
-      const r = data[i];
-      const g = data[i + 1];
-      const b = data[i + 2];
-      if (r !== 0 || g !== 0 || b !== 0) return false;
+    for (let i = 0; i < data.length; i += 8) {
+      if (r !== data[i] || g !== data[i + 1] || b !== data[i + 2]) return false;
     }
     return true;
   }
@@ -181,9 +181,13 @@
   }
 
   async function initializeLoop() {
+    placeCanvas = document
+      .querySelector("body > garlic-bread-app > faceplate-alert-reporter > garlic-bread-embed")
+      .shadowRoot.querySelector("div > garlic-bread-share-container > garlic-bread-camera > garlic-bread-canvas")
+      .shadowRoot.querySelector("div > canvas");
     let placeMatrix = getPlaceMatrix();
     if (placeMatrix.length != 2000 || placeMatrix[0].length != 3000) {
-      console.log(`Dimention updated to ${placeMatrix[0].length}x${placeMatrix.length}`);
+      console.log(`[Azzy Bot]: Dimention updated to ${placeMatrix[0].length}x${placeMatrix.length}`);
       //alert("Current map size is incompatible with this bot. Please contact Froxcey to fix this issue.");
       //return;
     }
@@ -193,7 +197,7 @@
       result = await placePixel(task.x, task.y, task.expected);
       console.log("Result:", result);
     } else {
-      console.log("No task to run, next check in 30sec...");
+      console.log("[Azzy Bot]: No task to run, next check in 30sec...");
       result = { next: 30000 };
     }
     setTimeout(() => {
@@ -212,7 +216,7 @@
         let remoteVersion = response.responseText.split("\n")[0];
         if (remoteVersion != GM_info.script.version) {
           let updateType = response.responseText.split("\n")[1];
-          console.log(`Found a ${updateType} (${GM_info.script.version} => ${remoteVersion})`);
+          console.log(`[Azzy Bot]: Found ${updateType} (${GM_info.script.version} => ${remoteVersion})`);
           showUpdate(GM_info.script.version, remoteVersion, GM_info.script.updateURL, updateType);
         }
       },
@@ -223,12 +227,35 @@
     let diff = [];
 
     for (const template of templates) {
-      diff.push(compareMatrix(getPlaceMatrix(), imgTo2DArray(template.img), template.offsetX, template.offsetY));
+      if (!isChunkLoaded(template.offsetX, template.offsetY)) {
+        console.log(`[Azzy Bot]: Area for project ${template.name} is not loaded, skipping.`);
+        continue;
+      }
+      diff.push(
+        ...compareMatrix(
+          getPlaceMatrix(),
+          imgTo2DArray(template.img),
+          template.offsetX,
+          template.offsetY,
+          template.name
+        )
+      );
     }
-    diff = diff[0];
-    console.log("Tasks remaining:", diff);
+    console.log("[Azzy Bot]: Tasks remaining:", diff);
     if (diff.length == 0) return null;
     return singleMode ? diff[0] : diff[Math.round(Math.random() * diff.length)];
+  }
+
+  function isChunkLoaded(x, y) {
+    const chunkInfo = coordsToMap(x, y);
+    const canvasChunkWidth = 1000;
+    const canvasChunkHeight = 1000;
+    const chunkTopLeftX = (chunkInfo.chunk % 3) * canvasChunkWidth;
+    const chunkTopLeftY = Math.floor(chunkInfo.chunk / 3) * canvasChunkHeight;
+    const chunkImageData = placeCanvas
+      .getContext("2d")
+      .getImageData(chunkTopLeftX, chunkTopLeftY, canvasChunkWidth, canvasChunkHeight);
+    return !isCanvasAll(chunkImageData, 0, 0, 0);
   }
 
   // Colour mapping
@@ -346,11 +373,10 @@
 
   function coordsToMap(x, y) {
     let chunk = 0;
-    if (x > 999) {
-      chunk++;
-      x -= 1000;
-    }
     if (x > 1999) {
+      chunk += 2;
+      x -= 2000;
+    } else if (x > 999) {
       chunk++;
       x -= 1000;
     }
@@ -365,7 +391,7 @@
     };
   }
 
-  function compareMatrix(placeMatrix, template, offsetX, offsetY) {
+  function compareMatrix(placeMatrix, template, offsetX, offsetY, templateName) {
     const differences = [];
 
     for (let y = 0; y < template.length; y++) {
@@ -385,9 +411,10 @@
         differences.push({
           x: placeX,
           y: placeY,
-          coord: `(${placeX - 1000}, ${placeY - 1000})`,
+          coord: `(${placeX - 1500}, ${placeY - 1000})`,
           expected: `rgb(${templatePixel.r}, ${templatePixel.g}, ${templatePixel.b})`,
           found: `rgb(${placePixel.r}, ${placePixel.g}, ${placePixel.b})`,
+          from: templateName,
         });
       }
     }
@@ -396,10 +423,6 @@
   }
 
   function getPlaceMatrix() {
-    let placeCanvas = document
-      .querySelector("body > garlic-bread-app > faceplate-alert-reporter > garlic-bread-embed")
-      .shadowRoot.querySelector("div > garlic-bread-share-container > garlic-bread-camera > garlic-bread-canvas")
-      .shadowRoot.querySelector("div > canvas");
     setButtonStyle();
     let ctx = placeCanvas.getContext("2d");
     let imageData = ctx.getImageData(0, 0, placeCanvas.width, placeCanvas.height);
@@ -454,7 +477,7 @@
     return pixelArray;
   }
   function fetchImage(src) {
-    console.log("Fetching template from", src);
+    console.log("[Azzy Bot]: Fetching template from", src);
     return new Promise((resolve, reject) => {
       let img = new Image();
       img.onload = () => resolve(img);
