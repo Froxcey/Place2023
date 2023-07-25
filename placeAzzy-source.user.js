@@ -44,12 +44,17 @@
       });
       if (template.length == 0) return console.log("Unknown task:", event.data.name);
       console.log("Adding task: ", template[0].name);
-      let img = await fetchImage(template[0].templateURL);
-      templates.push({
-        img,
-        offsetX: template[0].offsetX,
-        offsetY: template[0].offsetY,
-      });
+      fetchImage(template[0].templateURL)
+        .then((img) => {
+          templates.push({
+            img,
+            offsetX: template[0].offsetX,
+            offsetY: template[0].offsetY,
+          });
+        })
+        .catch((err) => {
+          console.log("ERROR: template failed to load", err);
+        });
     }
     if (event.data.type == "singleMode") {
       console.log("[Azzy Bot]: Single mode enabled, all pixels will not be randomised.");
