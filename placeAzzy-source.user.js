@@ -22,8 +22,8 @@
     tasks: [
       {
         name: "azzy",
-        templateURL: "https://i.imgur.com/GHaKWZI.png",
-        offsetX: 377,
+        templateURL: "https://i.imgur.com/C3yISYd.png",
+        offsetX: 361,
         offsetY: 213,
       },
       {
@@ -34,15 +34,9 @@
       },
       {
         name: "azzy2",
-        templateURL: "https://i.imgur.com/e78QQ6d.png",
+        templateURL: "https://i.imgur.com/AehbIhF.png",
         offsetX: 285,
         offsetY: 490,
-      },
-      {
-        name: "azzy3",
-        templateURL: "https://i.imgur.com/PhP84pP.png",
-        offsetX: 2102,
-        offsetY: 1880,
       },
     ],
     updateCheckURL: "https://raw.githubusercontent.com/Froxcey/Place2023/master/version.txt",
@@ -308,7 +302,7 @@
     console.log(`[Azzy Bot]: Placing pixel at (${x - 1500}, ${y - 1000}) with ${color}`);
     let mapCoords = coordsToMap(x, y);
     let colorIndex = colorMap[color];
-    if (!colorIndex) return console.error(`${color} is not found in index mapping, please update`);
+    if (!colorIndex && colorIndex !== 0) return console.error(`${color} is not found in index mapping, please update`);
     let reqContent = {
       operationName: "setPixel",
       variables: {
