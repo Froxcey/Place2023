@@ -3,7 +3,7 @@
 // @homepage     https://discord.gg/AmUVTBST
 // @updateURL    https://github.com/Froxcey/Place2023/raw/master/placeAzzy-source.user.js
 // @downloadURL  https://github.com/Froxcey/Place2023/raw/master/placeAzzy-source.user.js
-// @version      1.7.4
+// @version      1.7.5
 // @description  try to take over the world!
 // @author       Froxcey
 // @match        https://garlic-bread.reddit.com/embed*
@@ -22,9 +22,9 @@
     tasks: [
       {
         name: "azzy",
-        templateURL: "https://i.imgur.com/uGf8UB6.png",
-        offsetX: 388,
-        offsetY: 214,
+        templateURL: "https://i.imgur.com/i4CYRKU.png",
+        offsetX: 387,
+        offsetY: 213,
       },
     ],
     updateCheckURL: "https://raw.githubusercontent.com/Froxcey/Place2023/master/version.txt",
