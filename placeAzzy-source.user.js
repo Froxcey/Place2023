@@ -182,6 +182,7 @@
       console.log("Result:", result);
     } else {
       console.log("No task to run, next check in 30sec...");
+      result = { next: 30000 };
     }
     setTimeout(() => {
       initializeLoop();
