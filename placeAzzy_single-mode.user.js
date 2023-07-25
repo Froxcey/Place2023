@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Azzy Bot - Single mode
+// @name         Azzy Bot - Top down
 // @homepage     https://discord.gg/AmUVTBST
 // @updateURL    https://github.com/Froxcey/Place2023/raw/master/placeAzzy_azzy-bg.user.js
 // @downloadURL  https://github.com/Froxcey/Place2023/raw/master/placeAzzy_azzy-bg.user.js

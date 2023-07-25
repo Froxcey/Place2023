@@ -12,9 +12,9 @@ Independently developed 2023 r/place bot by Froxcey for the [Asriel place Discor
 
 ## Addons
 
-**Asriel BG** (1.6.1+): Click [me](https://github.com/Froxcey/Place2023/raw/master/placeAzzy_azzy-bg.user.js) to enable the Asriel BG project.
+**Single mode** (1.6.5+): Click [me](https://github.com/Froxcey/Place2023/raw/master/placeAzzy_single-mode.user.js) to enable top down mode (alway build top to down and left to right).
 
-**Single mode** (1.6.5+): Click [me](https://github.com/Froxcey/Place2023/raw/master/placeAzzy_single-mode.user.js) to enable single mode (alway build top to down and left to right).
+**Flowey on Azzy** (1.7.9+): Click [me](https://github.com/Froxcey/Place2023/raw/master/placeAzzy_flowey-on-azzy.user.js) to enable placing the Flowey on Azzy project.
 
 **Other projects**: Please join our [Discord server](https://discord.gg/AmUVTBST) if you'd like to add your project to our bot.
 

@@ -3,7 +3,7 @@
 // @homepage     https://discord.gg/AmUVTBST
 // @updateURL    https://github.com/Froxcey/Place2023/raw/master/placeAzzy-source.user.js
 // @downloadURL  https://github.com/Froxcey/Place2023/raw/master/placeAzzy-source.user.js
-// @version      1.7.8
+// @version      1.7.9
 // @description  try to take over the world!
 // @author       Froxcey
 // @match        https://garlic-bread.reddit.com/embed*
@@ -25,6 +25,12 @@
         templateURL: "https://i.imgur.com/i4CYRKU.png",
         offsetX: 377,
         offsetY: 213,
+      },
+      {
+        name: "floweyOnAzzy",
+        templateURL: "https://i.imgur.com/7h8YPZK.png",
+        offsetX: 376,
+        offsetY: 193,
       },
     ],
     updateCheckURL: "https://raw.githubusercontent.com/Froxcey/Place2023/master/version.txt",
@@ -51,6 +57,7 @@
             offsetX: template[0].offsetX,
             offsetY: template[0].offsetY,
           });
+          tasks[event.data.name] = true;
         })
         .catch((err) => {
           console.log("ERROR: template failed to load", err);
