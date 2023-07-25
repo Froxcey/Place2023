@@ -3,7 +3,7 @@
 // @homepage     https://discord.gg/AmUVTBST
 // @updateURL    https://github.com/Froxcey/Place2023/raw/master/placeAzzy-source.user.js
 // @downloadURL  https://github.com/Froxcey/Place2023/raw/master/placeAzzy-source.user.js
-// @version      1.7.7
+// @version      1.7.8
 // @description  try to take over the world!
 // @author       Froxcey
 // @match        https://garlic-bread.reddit.com/embed*
@@ -185,7 +185,6 @@
   }
 
   async function checkUpdate() {
-    showUpdate(GM_info.script.version, "1.7.9", GM_info.script.updateURL, "Update");
     GM_xmlhttpRequest({
       method: "GET",
       url: config.updateCheckURL,
