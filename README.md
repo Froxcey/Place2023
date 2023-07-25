@@ -5,7 +5,7 @@ Independently developed 2023 r/place bot by Froxcey for the [Asriel place Discor
 ## Installation
 
 1. Get [Tampermonkey](https://www.tampermonkey.net/)
-2. Install [this](https://github.com/Froxcey/Place2023/raw/master/placeAzzy.user.js)
+2. Install [this](https://github.com/Froxcey/Place2023/raw/master/placeAzzy-source.user.js)
 3. Go [here](https://reddit.com/r/place)
 
 > ❗ Important: You need to keep the area that you want to place loaded by keeping them visible in the game window.
