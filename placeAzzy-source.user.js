@@ -3,7 +3,7 @@
 // @homepage     https://discord.gg/AmUVTBST
 // @updateURL    https://github.com/Froxcey/Place2023/raw/master/placeAzzy-source.user.js
 // @downloadURL  https://github.com/Froxcey/Place2023/raw/master/placeAzzy-source.user.js
-// @version      1.7.2
+// @version      1.7.3
 // @description  try to take over the world!
 // @author       Froxcey
 // @match        https://garlic-bread.reddit.com/embed*
@@ -22,7 +22,7 @@
     tasks: [
       {
         name: "azzy",
-        templateURL: "https://imgur.com/uGf8UB6",
+        templateURL: "https://i.imgur.com/uGf8UB6.png",
         offsetX: 378,
         offsetY: 214,
       },
@@ -97,6 +97,7 @@
 
       function tilCanvasLoaded() {
         if (isCanvasAllBlack()) {
+          console.log("Waiting for canva to load...");
           setTimeout(() => {
             tilCanvasLoaded();
           }, 2000);
@@ -112,6 +113,7 @@
       }
       tilCanvasLoaded();
     } catch (error) {
+      console.log("Load attempt failed:", error);
       setTimeout(() => {
         getCanvas();
       }, 2000);
