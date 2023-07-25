@@ -3,7 +3,7 @@
 // @homepage     https://discord.gg/AmUVTBST
 // @updateURL    https://github.com/Froxcey/Place2023/raw/master/placeAzzy-source.user.js
 // @downloadURL  https://github.com/Froxcey/Place2023/raw/master/placeAzzy-source.user.js
-// @version      1.7.14
+// @version      1.7.15
 // @description  try to take over the world!
 // @author       Froxcey
 // @match        https://garlic-bread.reddit.com/embed*
@@ -22,7 +22,13 @@
     tasks: [
       {
         name: "azzy",
-        templateURL: "https://i.imgur.com/C3yISYd.png",
+        templateURL: "https://i.imgur.com/yoBbu6b.png",
+        offsetX: 377,
+        offsetY: 213,
+      },
+      {
+        name: "frisk",
+        templateURL: "https://i.imgur.com/Ygw8gLS.png",
         offsetX: 361,
         offsetY: 213,
       },
@@ -47,6 +53,7 @@
   let auth;
   let tasks = {
     azzy: true,
+    frisk: true,
   };
   let singleMode = false;
   window.addEventListener("message", async (event) => {
