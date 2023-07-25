@@ -3,7 +3,7 @@
 // @homepage     https://discord.gg/AmUVTBST
 // @updateURL    https://github.com/Froxcey/Place2023/raw/master/placeAzzy-source.user.js
 // @downloadURL  https://github.com/Froxcey/Place2023/raw/master/placeAzzy-source.user.js
-// @version      1.7.9
+// @version      1.7.10
 // @description  try to take over the world!
 // @author       Froxcey
 // @match        https://garlic-bread.reddit.com/embed*
@@ -31,6 +31,18 @@
         templateURL: "https://i.imgur.com/7h8YPZK.png",
         offsetX: 376,
         offsetY: 193,
+      },
+      {
+        name: "azzy2",
+        templateURL: "https://i.imgur.com/e78QQ6d.png",
+        offsetX: 285,
+        offsetY: 490,
+      },
+      {
+        name: "azzy3",
+        templateURL: "https://i.imgur.com/PhP84pP.png",
+        offsetX: 2102,
+        offsetY: 1880,
       },
     ],
     updateCheckURL: "https://raw.githubusercontent.com/Froxcey/Place2023/master/version.txt",
@@ -200,7 +212,7 @@
         let remoteVersion = response.responseText.split("\n")[0];
         if (remoteVersion != GM_info.script.version) {
           let updateType = response.responseText.split("\n")[1];
-          console.log(`Found an ${updateType} (${GM_info.script.version} => ${remoteVersion})`);
+          console.log(`Found a ${updateType} (${GM_info.script.version} => ${remoteVersion})`);
           showUpdate(GM_info.script.version, remoteVersion, GM_info.script.updateURL, updateType);
         }
       },
