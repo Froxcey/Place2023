@@ -198,12 +198,9 @@
       onload: function (response) {
         let remoteVersion = response.responseText.split("\n")[0];
         if (remoteVersion != GM_info.script.version) {
-          showUpdate(
-            GM_info.script.version,
-            remoteVersion,
-            GM_info.script.updateURL,
-            response.responseText.split("\n")[1]
-          );
+          let updateType = response.responseText.split("\n")[1];
+          console.log(`Found an ${updateType} (${GM_info.script.version} => ${remoteVersion})`);
+          showUpdate(GM_info.script.version, remoteVersion, GM_info.script.updateURL, updateType);
         }
       },
     });
