@@ -185,12 +185,19 @@
   }
 
   async function checkUpdate() {
+    showUpdate(GM_info.script.version, "1.7.9", GM_info.script.updateURL, "Update");
     GM_xmlhttpRequest({
       method: "GET",
       url: config.updateCheckURL,
       onload: function (response) {
-        if (response.responseText != GM_info.script.version) {
-          showUpdate(GM_info.script.version, response.responseText, GM_info.script.updateURL);
+        let remoteVersion = response.responseText.split("\n")[0];
+        if (remoteVersion != GM_info.script.version) {
+          showUpdate(
+            GM_info.script.version,
+            remoteVersion,
+            GM_info.script.updateURL,
+            response.responseText.split("\n")[1]
+          );
         }
       },
     });
@@ -441,8 +448,28 @@
     });
   }
 
-  const showUpdate = (oldVer, newVer, url) => {
+  let doPlayStt = false;
+  function playUpdateStt(version, type) {
+    if ("speechSynthesis" in window) {
+      var speech = new SpeechSynthesisUtterance(
+        `Azzy bot update. ${type} version ${version} is now available. Please update immediately.`
+      );
+      speech.lang = "en-GB";
+      speech.onend = () => {
+        if (doPlayStt) playUpdateStt(version, type);
+      };
+      window.speechSynthesis.speak(speech);
+    }
+  }
+
+  const showUpdate = (oldVer, newVer, url, type) => {
     clearUpdate();
+    if (type == "Rapid response") {
+      doPlayStt = true;
+      playUpdateStt(newVer, type);
+    } else if (type == "Update") {
+      playUpdateStt(newVer, type);
+    }
     let newElement = document.createElement("div");
     let boxStyle = `
     background-color: #eeeeee;
@@ -475,6 +502,7 @@
   };
 
   const clearUpdate = () => {
+    doPlayStt = false;
     let element = document.getElementById("botUpdateMsg");
     if (element) element.parentNode.removeChild(element);
   };
