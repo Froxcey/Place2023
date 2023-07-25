@@ -323,12 +323,13 @@
 
   function coordsToMap(x, y) {
     let chunk = 0;
-    if (x < 2000 && x > 999) {
+    if (x > 999) {
       chunk++;
       x -= 1000;
-    } else {
-      chunk += 2;
-      x -= 2000;
+    }
+    if (x > 1999) {
+      chunk++;
+      x -= 1000;
     }
     if (y > 999) {
       chunk += 3;
